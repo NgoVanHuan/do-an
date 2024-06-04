@@ -5,7 +5,6 @@ import com.example.manager_chemical_test.dto.Apiresponse.ApiResponse;
 import com.example.manager_chemical_test.dto.ChemicalDTO;
 import com.example.manager_chemical_test.dto.UserResponse;
 import com.example.manager_chemical_test.dto.request.UserUpdateRequest;
-import com.example.manager_chemical_test.service.ICategoriesService;
 import com.example.manager_chemical_test.service.IChemicalService;
 import com.example.manager_chemical_test.service.IUserService;
 import jakarta.validation.Valid;
@@ -27,8 +26,8 @@ import java.util.List;
 public class ChemicalController {
     @Autowired
     IChemicalService ichemicalsService;
-    @Autowired
-    ICategoriesService iCategoriesService;
+//    @Autowired
+//    ICategoriesService iCategoriesService;
     @Autowired
     IUserService iUserService;
 
@@ -104,7 +103,7 @@ public class ChemicalController {
         return apiResponse;
     }
 
-    @GetMapping("/users")
+    @GetMapping("/alls")
     ApiResponse<List<ChemicalDTO>> getUsers() {
          var authentication  =SecurityContextHolder.getContext().getAuthentication();
          log.info("Username: {}", authentication.getName());

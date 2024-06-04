@@ -6,6 +6,7 @@ import com.example.manager_chemical_test.dto.request.ChemicalRequest;
 import com.example.manager_chemical_test.entity.ChemicalsEntity;
 
 import com.example.manager_chemical_test.mapper.ChemicalMapper;
+
 import com.example.manager_chemical_test.repository.ChemicalRepository;
 import com.example.manager_chemical_test.service.IChemicalService;
 
@@ -23,9 +24,6 @@ public class ChemicalService implements IChemicalService {
 
          ChemicalRepository chemicalRepository;
          ChemicalMapper chemicalMapper;
-
-
-
 
         @Override
         public ChemicalDTO createChemical(ChemicalDTO request) {

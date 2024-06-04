@@ -13,7 +13,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class ChemicalDTO extends BaseDTO {
+public class ChemicalDTO  {
      Long id;
      String createdBy;
      Date createdDate;

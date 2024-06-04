@@ -2,12 +2,9 @@ package com.example.manager_chemical_test.controller;
 
 
 import com.example.manager_chemical_test.dto.Apiresponse.ApiResponse;
-import com.example.manager_chemical_test.dto.ChemicalDTO;
 import com.example.manager_chemical_test.dto.UserResponse;
 import com.example.manager_chemical_test.dto.request.UserCreationRequest;
 import com.example.manager_chemical_test.dto.request.UserUpdateRequest;
-import com.example.manager_chemical_test.service.ICategoriesService;
-import com.example.manager_chemical_test.service.IChemicalService;
 import com.example.manager_chemical_test.service.IUserService;
 import jakarta.validation.Valid;
 import lombok.AccessLevel;
@@ -26,10 +23,8 @@ import java.util.List;
 @Slf4j
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class UserController {
-    @Autowired
-    IChemicalService ichemicalsService;
-    @Autowired
-    ICategoriesService iCategoriesService;
+
+
     @Autowired
     IUserService iUserService;
 
@@ -55,10 +50,10 @@ public class UserController {
 //        newChemicalDTO.setChemiocalName("New Chemical Name");
 //        return newChemicalDTO;
 //    }
-    @GetMapping("/all")
-    public List<ChemicalDTO> getAllChemicals() {
-        return ichemicalsService.findAlll();
-    }
+//    @GetMapping("/all")
+//    public List<ChemicalDTO> getAllChemicals() {
+//        return ichemicalsService.findAlll();
+//    }
 
 //    @GetMapping("/category/{id}")
 //    public CategoriesDTO getByIdCategory(@PathVariable Long id) {

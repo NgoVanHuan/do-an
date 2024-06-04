@@ -44,7 +44,6 @@ public class ChemicalsEntity extends BaseEntity {
  @JoinColumn(name = "manufacturer_id")
  private ManufacturersEntity manufacturer;
 
-
  @OneToMany(mappedBy = "chemicals")
  private List<ShipmentsEntity> shipments;
  @OneToMany(mappedBy = "chemicals")
@@ -53,7 +52,6 @@ public class ChemicalsEntity extends BaseEntity {
  private List<InventoryEntity> inventory;
  @ManyToMany(mappedBy = "chemicals")
  private List<WarehouseLocationsEntity> warehouseLocations = new ArrayList<>();
-
 
 
 // @OneToMany(mappedBy = "chemicals")
