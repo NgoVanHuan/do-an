@@ -17,6 +17,5 @@ import org.mapstruct.MappingTarget;
 public interface CustomerMapper {
     CustomersEntity toCustomer(CustomerRequest request);
     CustomerResponse toCustomerResponse(CustomersEntity customers);
-
     void update(@MappingTarget CustomersEntity customers, CustomerRequest request);
 }
