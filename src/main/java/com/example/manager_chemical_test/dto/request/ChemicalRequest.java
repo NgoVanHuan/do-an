@@ -30,5 +30,4 @@ public class ChemicalRequest extends BaseDTO {
      String chemicalType;
      String unitOfMeasure;
 
-
 }

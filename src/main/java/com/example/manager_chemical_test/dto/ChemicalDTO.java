@@ -23,7 +23,7 @@ public class ChemicalDTO  {
      String chemicalDescription;
      int casNumber;
      String safetyDataSheetFilePath;
-//     Set<CategoriesDTO> categories;
+//     List<CategoriesDTO> categories;
      Double flashPoint;
      Double storageTemperatureRange;
      String storageConditions;

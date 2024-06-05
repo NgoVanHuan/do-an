@@ -37,7 +37,7 @@ public class CategoryController {
                 .build();
     }
 
-    @DeleteMapping("/{role}")
+    @DeleteMapping("/{ID}")
     ApiResponse<Void> delete(@PathVariable Long ID) {
         categoriesService.delete(ID);
         return ApiResponse.<Void>builder().build();

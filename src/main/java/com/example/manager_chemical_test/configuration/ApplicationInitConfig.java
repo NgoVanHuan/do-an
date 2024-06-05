@@ -1,7 +1,7 @@
 package com.example.manager_chemical_test.configuration;
 
 import com.example.manager_chemical_test.entity.UsersEntity;
-import com.example.manager_chemical_test.enums.Role;
+
 import com.example.manager_chemical_test.repository.UserRepository;
 import lombok.AccessLevel;
 
@@ -28,8 +28,8 @@ public class ApplicationInitConfig {
     ApplicationRunner applicationRunner(UserRepository userRepository){
         return  args -> {
             if (userRepository.findByUserName("admin").isEmpty()){
-                var roles = new HashSet<String>();
-                roles.add(Role.ADMIN.name());
+//                var roles = new HashSet<String>();
+//                roles.add(Role.ADMIN.name());
 
                 UsersEntity usersEntity =UsersEntity.builder()
                         .userName("admin")

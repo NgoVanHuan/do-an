@@ -6,9 +6,9 @@ import org.springframework.security.access.prepost.PreAuthorize;
 
 import java.util.List;
 
-public interface IChemicalService {
+public interface IChemicalService  {
         @PreAuthorize("hasRole('ADMIN')")
-        ChemicalDTO createChemical(ChemicalDTO chemicalDTO);
+        ChemicalDTO createChemical (ChemicalDTO chemicalDTO);
         @PreAuthorize("hasRole('ADMIN')")
         List<ChemicalDTO> findAlll();
         @PreAuthorize("hasRole('ADMIN')")

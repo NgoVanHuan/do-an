@@ -1,7 +1,5 @@
 package com.example.manager_chemical_test.configuration;
 
-
-import com.example.manager_chemical_test.enums.Role;
 import lombok.experimental.NonFinal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -82,8 +80,5 @@ public class SecurityConfig {
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(10);
     }
-//
-
-
 }
 

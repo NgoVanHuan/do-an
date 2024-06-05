@@ -7,6 +7,8 @@ import com.example.manager_chemical_test.dto.UserResponse;
 import com.example.manager_chemical_test.dto.request.UserUpdateRequest;
 import com.example.manager_chemical_test.service.IChemicalService;
 import com.example.manager_chemical_test.service.IUserService;
+import com.example.manager_chemical_test.service.Impl.CategoriesService;
+import com.example.manager_chemical_test.service.Impl.ChemicalService;
 import jakarta.validation.Valid;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -25,11 +27,10 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class ChemicalController {
     @Autowired
-    IChemicalService ichemicalsService;
-//    @Autowired
-//    ICategoriesService iCategoriesService;
+    IChemicalService chemicalsService;
     @Autowired
-    IUserService iUserService;
+    CategoriesService categoriesService;
+
 
     //    @GetMapping
 //    public List<chemicalDTO> getAllPosts() {
@@ -42,99 +43,33 @@ public class ChemicalController {
 //                .map(chemicalsEntity -> modelMapper.map(chemicalsEntity, chemicalDTO.class))
 //                .collect(Collectors.toList());
 //    }
-    @GetMapping("/your")
-    public String getAllPosts() {
-        return "Onus là món quà của thượng đế , hãy tải và trải nghiệm ngay";
-    }
-
-    //    @GetMapping("/create")
-//    public ChemicalDTO createChemical(){
-//        ChemicalDTO newChemicalDTO = new ChemicalDTO();
-//        newChemicalDTO.setChemiocalName("New Chemical Name");
-//        return newChemicalDTO;
-//    }
     @GetMapping("/all")
     public List<ChemicalDTO> getAllChemicals() {
-        return ichemicalsService.findAlll();
+        return chemicalsService.findAlll();
     }
-
-//    @GetMapping("/category/{id}")
-//    public CategoriesDTO getByIdCategory(@PathVariable Long id) {
-//        return iCategoriesService.getById(id);
-//    }
-//
-//    @PostMapping(value = "/category/create")
-//    ApiResponse<CategoriesDTO> createCategory(@RequestBody @Valid CategoriesDTO model) {
-//        ApiResponse<CategoriesDTO> apiResponse = new ApiResponse<>();
-//        apiResponse.setResult(iCategoriesService.save(model));
-//        return apiResponse;
-//    }
-//
-//    @PutMapping(value = "/category/create/{id}")
-//    public CategoriesDTO updateCategory(@RequestBody CategoriesDTO model, @PathVariable("id") long id) {
-//        model.setId(id);
-//        return iCategoriesService.save(model);
-//    }
-//
-//    @DeleteMapping(value = "/category/delete")
-//    public ResponseEntity<String> deleteCategory(@RequestBody long[] ids) {
-//        iCategoriesService.delete(ids);
-//        String message = "Deleted successfully";
-//        return ResponseEntity.ok().body(message);
-//    }
 
 
     @PostMapping(value = "/create")
     ApiResponse<ChemicalDTO> createChemical(@RequestBody @Valid ChemicalDTO model) {
         ApiResponse<ChemicalDTO> apiResponse = new ApiResponse<>();
-        apiResponse.setResult(ichemicalsService.createChemical(model));
-        return apiResponse;
-    }
-
-    //    @PutMapping(value = "/user/create/{id}")
-//    public UserDTO updateUser(@RequestBody UserDTO model, @PathVariable("id") long id) {
-//        model.setId(id);
-//        return iUserService.save(model);
-//    }
-    @GetMapping("/user/{id}")
-    ApiResponse<UserResponse> getById(@PathVariable Long id) {
-        ApiResponse<UserResponse> apiResponse = new ApiResponse<>();
-        apiResponse.setResult(iUserService.getById(id));
+        apiResponse.setResult(chemicalsService.createChemical(model));
         return apiResponse;
     }
 
     @GetMapping("/alls")
     ApiResponse<List<ChemicalDTO>> getUsers() {
-         var authentication  =SecurityContextHolder.getContext().getAuthentication();
-         log.info("Username: {}", authentication.getName());
-         authentication.getAuthorities().forEach(grantedAuthority -> log.info(grantedAuthority.getAuthority()));
+//         var authentication  =SecurityContextHolder.getContext().getAuthentication();
+//         log.info("Username: {}", authentication.getName());
+//         authentication.getAuthorities().forEach(grantedAuthority -> log.info(grantedAuthority.getAuthority()));
         return ApiResponse.<List<ChemicalDTO>>builder()
-                .result(ichemicalsService.findAlll())
+                .result(chemicalsService.findAlll())
                 .build();
     }
     @DeleteMapping("/{Id}")
     ApiResponse<String> deleteChemical(@PathVariable long Id) {
-        ichemicalsService.delete(Id);
+        chemicalsService.delete(Id);
         return ApiResponse.<String>builder().result("Chemical has been deleted").build();
     }
 
 
-//    @PutMapping(value = "/user/create/{id}")
-//    public UserResponse updateUser(@RequestBody UserResponse model, @PathVariable("id") long id) {
-//        model.setId(id);
-//        return iUserService.save(model);
-//    }
-    @PutMapping("/{userId}")
-    ApiResponse<UserResponse> updateUser(@PathVariable Long userId, @RequestBody UserUpdateRequest request) {
-        return ApiResponse.<UserResponse>builder()
-                .result(iUserService.updateUser(userId, request))
-                .build();
-    }
-
-    @GetMapping("/myinfo")
-    ApiResponse<UserResponse> getMyInfo() {
-        return ApiResponse.<UserResponse>builder()
-                .result(iUserService.getMyInfo())
-                .build();
-    }
 }
