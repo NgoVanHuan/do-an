@@ -1,10 +1,12 @@
 package com.example.manager_chemical_test.dto.request;
 
+import com.example.manager_chemical_test.dto.ChemicalDTO;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -20,4 +22,5 @@ public class CategoryRequest {
     @Size(min = 2, message = "name hon 2")
     String categoryName;
     String description;
+    List<ChemicalDTO> chemicals;
 }

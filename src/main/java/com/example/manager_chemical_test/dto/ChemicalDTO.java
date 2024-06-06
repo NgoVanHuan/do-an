@@ -22,13 +22,14 @@ public class ChemicalDTO  {
      String chemicalName;
      String chemicalDescription;
      int casNumber;
-     String safetyDataSheetFilePath;
-//     List<CategoriesDTO> categories;
+     String safetyDatasheetfilepath;
+     Long categoryId;
+     Long manufacturerId;
      Double flashPoint;
-     Double storageTemperatureRange;
+     Double storageTemperaturerange;
      String storageConditions;
      String chemicalType;
-     String unitOfMeasure;
+     String unitOfmeasure;
 
 
 }

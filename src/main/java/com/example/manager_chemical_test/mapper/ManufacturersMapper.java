@@ -2,9 +2,10 @@ package com.example.manager_chemical_test.mapper;
 
 import com.example.manager_chemical_test.dto.CategoriesDTO;
 import com.example.manager_chemical_test.dto.ChemicalDTO;
-import com.example.manager_chemical_test.dto.request.CategoryRequest;
+import com.example.manager_chemical_test.dto.ManufacturersDTO;
 import com.example.manager_chemical_test.entity.CategoriesEntity;
 import com.example.manager_chemical_test.entity.ChemicalsEntity;
+import com.example.manager_chemical_test.entity.ManufacturersEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
@@ -26,14 +27,14 @@ import java.util.stream.Collectors;
 
 
 @Mapper(componentModel = "spring")
-public interface CategoriesMapper {
-    CategoriesMapper INSTANCE = Mappers.getMapper(CategoriesMapper.class);
+public interface ManufacturersMapper {
+    ManufacturersMapper INSTANCE = Mappers.getMapper(ManufacturersMapper.class);
 
     @Mapping(target = "chemicals", qualifiedByName = "toChemicalsDTOList")
-    CategoriesDTO categoriesToCategoriesDTO(CategoriesEntity category);
+    ManufacturersDTO manufacturersToManufacturersDTO(ManufacturersEntity manufacturer);
 
     @Mapping(target = "chemicals", qualifiedByName = "toChemicalsList")
-    CategoriesEntity categoriesDTOToCategories(CategoriesDTO categoryDTO);
+    ManufacturersEntity manufacturersDTOToManufacturers(ManufacturersDTO manufacturersDTO);
 
     @Named("toChemicalsDTOList")
     default List<ChemicalDTO> toChemicalsDTOList(List<ChemicalsEntity> chemicals) {

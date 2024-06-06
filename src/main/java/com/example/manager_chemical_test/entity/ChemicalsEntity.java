@@ -1,8 +1,9 @@
 package com.example.manager_chemical_test.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,77 +12,56 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "chemicals")
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+@EqualsAndHashCode(callSuper = true)
 public class ChemicalsEntity extends BaseEntity {
- @Column(name = "chemical_name")
- private String chemicalName;
- @Column(name = "chemical_description")
- private String chemicalDescription;
- @Column(name = "cas_number")
- private int casNumber;
- @Column(name = "safety_data_sheet_file_path")
- private String safetyDataSheetFilePath;
- @Column(name = "flash_point")
- private Double flashPoint;
- @Column(name = "storage_temperature_range")
- private Double storageTemperatureRange;
+  @Column(name = "chemical_name")
+  String chemicalName;
+  @Column(name = "chemical_description")
+  String chemicalDescription;
+  @Column(name = "cas_number")
+  int casNumber;
+  @Column(name = "safety_datasheetfilepath")
+  String safetyDatasheetfilepath;
+  @Column(name = "flash_point")
+  Double flashPoint;
+  @Column(name = "storage_temperaturerange")
+  Double storageTemperaturerange;
  @Column(name = "storage_conditions")
- private String storageConditions;
+  String storageConditions;
  @Column(name = "chemical_type")
- private String chemicalType;
- @Column(name = "unit_of_measure")
- private String unitOfMeasure;
+  String chemicalType;
+ @Column(name ="unit_ofmeasure" )
+  String unitOfmeasure;
 
- @ManyToMany
- @JoinTable(name = "chemicals_suppliers",
-         joinColumns = @JoinColumn(name = "chemical_id"),
-         inverseJoinColumns = @JoinColumn(name = "supplier_id")
- )
- private List<SuppliersEntity> suppliers = new ArrayList<>();
- @ManyToOne(fetch = FetchType.LAZY)
+// @ManyToMany
+// @JoinTable(name = "chemicals_suppliers",
+//         joinColumns = @JoinColumn(name = "chemical_id"),
+//         inverseJoinColumns = @JoinColumn(name = "supplier_id")
+// )
+// private List<SuppliersEntity> suppliers;
+ @ManyToOne
  @JoinColumn(name = "category_id")
+ @EqualsAndHashCode.Exclude
+ @ToString.Exclude
+ @JsonIgnoreProperties(value = "chemicals")
  private CategoriesEntity categories;
- @ManyToOne(fetch = FetchType.LAZY)
+ @ManyToOne
+ @EqualsAndHashCode.Exclude
+ @ToString.Exclude
+ @JsonIgnoreProperties(value = "chemicals")
  @JoinColumn(name = "manufacturer_id")
- private ManufacturersEntity manufacturer;
-
- @OneToMany(mappedBy = "chemicals")
- private List<ShipmentsEntity> shipments;
- @OneToMany(mappedBy = "chemicals")
- private List<ShipmentItemsEntity> shipmentItems;
- @OneToMany(mappedBy = "chemicals")
- private List<InventoryEntity> inventory;
- @ManyToMany(mappedBy = "chemicals")
- private List<WarehouseLocationsEntity> warehouseLocations = new ArrayList<>();
-
-
+ private ManufacturersEntity manufacturers;
+// @ManyToMany(mappedBy = "chemicals")
+// private List<WarehouseLocationsEntity> warehouseLocations ;
 // @OneToMany(mappedBy = "chemicals")
-// private List<invoice_details_entity> invoiceDetails;
-//
+// private List<ShipmentsEntity> shipments;
 // @OneToMany(mappedBy = "chemicals")
-// private List<order_details_entity> orderDetails;
-//
+// private List<ShipmentItemsEntity> shipmentItems;
 // @OneToMany(mappedBy = "chemicals")
-// private List<batche_numbers_entity> batcheNumbers;
-//
-// @OneToMany(mappedBy = "chemicals")
-// private List<safetyDataSheets_entity> safetyDataSheets;
-//
-// @OneToMany(mappedBy = "chemicals")
-// private List<usageInstructions_entity> usageInstructions;
-//
-// @OneToMany(mappedBy = "chemicals")
-// private List<storageConditions_entity> storageConditions;
-//
-// @OneToMany(mappedBy = "chemicals")
-// private List<incidents_entity> incidents;
-//
-// @OneToMany(mappedBy = "chemicals")
-// private List<compositions_entity> compositions;
-//
-// @OneToMany(mappedBy = "chemicals")
-// private List<analysisReports_entity> analysisReports;
-//
-// @OneToMany(mappedBy = "chemicals")
-// private List<purchase_details_entity> purchaseDetails;
+// private List<InventoryEntity> inventory;
 
 }

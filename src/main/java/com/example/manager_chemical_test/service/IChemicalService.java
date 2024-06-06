@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface IChemicalService  {
         @PreAuthorize("hasRole('ADMIN')")
-        ChemicalDTO createChemical (ChemicalDTO chemicalDTO);
+        ChemicalDTO createChemical (ChemicalRequest chemicalDTO);
         @PreAuthorize("hasRole('ADMIN')")
         List<ChemicalDTO> findAlll();
         @PreAuthorize("hasRole('ADMIN')")

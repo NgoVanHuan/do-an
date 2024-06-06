@@ -1,9 +1,8 @@
 package com.example.manager_chemical_test.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
@@ -23,7 +22,11 @@ public class ManufacturersEntity extends BaseEntity {
     @Column(name = "manufacturer_website")
     private String manufacturerWebsite;
 
-    @OneToMany(mappedBy = "manufacturer")
+    @OneToMany(mappedBy = "manufacturers", cascade = CascadeType.ALL)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @JsonIgnore
+    @JsonIgnoreProperties(value = "manufacturers")
     private List<ChemicalsEntity> chemicals;
 
 
